@@ -315,6 +315,240 @@ main:has(table) section[aria-labelledby]::before {
     text-transform: uppercase;
 }
 
+
+main:has(.countdown-panel) {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    width: min(100% - 48px, var(--content-width));
+    margin: 0 auto;
+    padding: 64px 0 76px;
+}
+
+.countdown-panel {
+    width: 100%;
+}
+
+.fantasy-grid {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    width: 100%;
+}
+
+.fantasy-card {
+    flex: 1;
+    min-width: 0;
+    position: relative;
+    overflow: hidden;
+    padding: 28px;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.045), transparent 55%),
+        var(--surface);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.24);
+}
+
+.fantasy-card::before,
+.history-panel::before {
+    position: absolute;
+    top: -50%;
+    right: -14%;
+    width: 35%;
+    height: 190%;
+    transform: skewX(-22deg);
+    border-right: 1px solid rgba(225, 6, 0, 0.2);
+    border-left: 1px solid rgba(255, 255, 255, 0.06);
+    content: '';
+}
+
+.fantasy-card h2,
+.history-panel h2 {
+    position: relative;
+    z-index: 1;
+    margin: 0 0 24px;
+    color: var(--text);
+    font-family: 'Barlow Condensed', Impact, sans-serif;
+    font-size: 1.65rem;
+    font-style: italic;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+.fantasy-card h2::after,
+.history-panel h2::after {
+    display: block;
+    width: 44px;
+    height: 3px;
+    margin-top: 10px;
+    background: var(--red);
+    content: '';
+}
+
+.fantasy-card form,
+.drivers-list,
+.fantasy-card table {
+    position: relative;
+    z-index: 1;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 7px;
+    color: var(--muted);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.form-group select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    outline: none;
+    color: var(--text);
+    background-color: var(--surface-light);
+    font: inherit;
+    cursor: pointer;
+    transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.form-group select:focus {
+    border-color: var(--red);
+    box-shadow: 0 0 0 3px rgba(225, 6, 0, 0.15);
+}
+
+.fantasy-card button {
+    width: 100%;
+    margin-top: 7px;
+    padding: 13px 18px;
+    border: 0;
+    border-radius: 3px;
+    color: #fff;
+    background: var(--red);
+    font: inherit;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 180ms ease, transform 180ms ease;
+}
+
+.fantasy-card button:hover {
+    background: var(--red-light);
+    transform: translateY(-1px);
+}
+
+.drivers-list,
+.history-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.drivers-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 0.88rem;
+}
+
+.drivers-list li:first-child {
+    color: var(--text);
+}
+
+.drivers-list li::before {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    margin: 0 11px 2px 2px;
+    border-radius: 50%;
+    background: var(--red);
+    content: '';
+}
+
+.fantasy-card table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.fantasy-card th {
+    padding: 0 8px 13px;
+    border-bottom: 2px solid var(--red);
+    color: var(--red-light);
+    font-size: 0.67rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.fantasy-card td {
+    padding: 13px 8px;
+    border-bottom: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 0.88rem;
+}
+
+.fantasy-card td:first-child {
+    color: var(--red-light);
+    font-family: 'Barlow Condensed', Impact, sans-serif;
+    font-size: 1.15rem;
+}
+
+.fantasy-card td:last-child {
+    color: var(--text);
+    font-weight: 700;
+    text-align: right;
+}
+
+.fantasy-card th:last-child {
+    text-align: right;
+}
+
+.history-panel {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    padding: 28px;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background: var(--surface);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.24);
+}
+
+.history-list {
+    position: relative;
+    z-index: 1;
+}
+
+.history-list li {
+    padding: 15px 0;
+    border-bottom: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 0.86rem;
+    line-height: 1.6;
+}
+
+.history-list li:last-child {
+    border-bottom: 0;
+}
+
+.history-list strong {
+    color: var(--text);
+}
+
+.history-list .points {
+    color: #52d273;
+    font-weight: 700;
+}
+
 main:has(table) section[aria-labelledby] {
     padding: 0;
 }
@@ -431,5 +665,45 @@ main:has(table) tbody tr:hover {
     *::after {
         scroll-behavior: auto !important;
         transition: none !important;
+    }
+}
+
+@media (max-width: 900px) {
+    .fantasy-grid {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 560px) {
+    main:has(.countdown-panel) {
+        width: min(100% - 32px, var(--content-width));
+        padding: 38px 0 48px;
+    }
+
+    .countdown-panel,
+    .fantasy-card,
+    .history-panel {
+        padding: 22px;
+    }
+
+    .countdown-container {
+        gap: 7px;
+    }
+
+    .countdown-box {
+        padding: 14px 5px 12px;
+    }
+
+    .countdown-box .number {
+        font-size: 2rem;
+    }
+
+    .fantasy-card h2,
+    .history-panel h2 {
+        font-size: 1.45rem;
+    }
+
+    .history-list li {
+        font-size: 0.78rem;
     }
 }
