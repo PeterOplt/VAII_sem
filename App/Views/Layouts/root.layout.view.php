@@ -34,13 +34,13 @@
                 <a class="nav-link" href="<?= $link->url('home.index') ?>">Domov</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?= $link->url('home.calendar') ?>">Kalendar</a>
+                <a class="nav-link" href="<?= $link->url('calendar.index') ?>">Kalendar</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="<?= $link->url('fantasy.index') ?>">Fantasy</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?= $link->url('home.drivers') ?>">Jazci</a>
+                <a class="nav-link" href="<?= $link->url('drivers.index') ?>">Jazci</a>
             </li>
 
 
