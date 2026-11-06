@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Framework\Core\IIdentity;
+use Framework\Core\Model;
 
 class User extends Model implements IIdentity
 {
@@ -14,9 +15,9 @@ class User extends Model implements IIdentity
     protected ?string $username = null;
     protected ?string $email = null;
     protected ?string $passwordHash = null;
-    protected ?string $role = null;
-    protected ?int $totalPoints = null;
-    protected ?string $avaterPath = null;
+    protected ?string $role = self::ROLE_USER;
+    protected ?int $totalPoints = 0;
+    protected ?string $avatarPath = null;
 
     protected static ?array $fillable = ['username', 'email'];
 
@@ -43,14 +44,14 @@ class User extends Model implements IIdentity
         $this->totalPoints = $totalPoints;
     }
 
-    public function getAvaterPath(): ?string
+    public function getAvatarPath(): ?string
     {
-        return $this->avaterPath;
+        return $this->avatarPath;
     }
 
-    public function setAvaterPath(?string $avaterPath): void
+    public function setAvatarPath(?string $avatarPath): void
     {
-        $this->avaterPath = $avaterPath;
+        $this->avatarPath = $avatarPath;
     }
 
 
@@ -58,7 +59,7 @@ class User extends Model implements IIdentity
     {
         return $this->username ?? '';
     }
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }

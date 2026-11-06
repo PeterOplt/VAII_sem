@@ -12,7 +12,7 @@ class UserFavoriteDriver extends Model
     protected ?int $userId = null;
     protected ?int $driverId = null;
 
-    // Oba kľúče sa nastavujú v controlleri, nič z formulára
+
     protected static ?array $fillable = [];
 
     public function getId(): ?int

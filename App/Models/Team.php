@@ -14,14 +14,9 @@ class Team extends Model
 
     protected static ?array $fillable = ['name', 'baseLocation', 'powerUnit'];
 
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function setId(int $id): void
-    {
-        $this->id = $id;
     }
 
     public function getName(): ?string
@@ -62,5 +57,11 @@ class Team extends Model
     public function setLogoPath(?string $logoPath): void
     {
         $this->logoPath = $logoPath;
+    }
+
+    /** @return Driver[] */
+    public function getDrivers(): array
+    {
+        return $this->getAllRelated(Driver::class, 'teamId');
     }
 }

@@ -95,8 +95,6 @@ class Prediction extends Model
 
     public function save(): void
     {
-        // Framework pri INSERT posiela všetky stĺpce, aj null.
-        // Preto čas vytvorenia doplníme tu, inak by DB odmietla NULL.
         if ($this->createdAt === null) {
             $this->createdAt = date('Y-m-d H:i:s');
         }
@@ -134,7 +132,6 @@ class Prediction extends Model
         return $predictions[0] ?? null;
     }
 
-    // Tip je platný len ak sú vyplnení všetci traja a každý je iný jazdec
     public function hasValidDrivers(): bool
     {
         $drivers = [$this->predictedP1DriverId, $this->predictedP2DriverId, $this->predictedP3DriverId];
