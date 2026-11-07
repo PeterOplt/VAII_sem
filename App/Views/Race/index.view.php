@@ -26,7 +26,7 @@
                 <?php foreach ($races as $race): ?>
                     <tr>
                         <td><?= e($race->getName()) ?></td>
-                        <td><?= date('d.m.Y H:i',strtotime(e($race->getRaceDate()))) ?></td>
+                        <td><?= date('d.m.Y H:i',strtotime($race->getRaceDate())) ?></td>
                         <td><?= e($race->getLocation()) ?></td>
                         <td><?= e($race->getCircuitName()) ?></td>
                         <td><?= e($race->getLaps()) ?></td>
