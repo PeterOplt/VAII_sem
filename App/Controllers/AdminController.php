@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-use App\Models\Race;
 use Framework\Core\BaseController;
 use Framework\Http\Request;
 use Framework\Http\Responses\Response;

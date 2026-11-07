@@ -56,6 +56,10 @@
                         </li>
                         <li><hr class="dropdown-divider"></li>
                         <li>
+                            <a class="dropdown-item" href="<?= $link->url('admin.index') ?>">Admin</a>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
                             <a class="dropdown-item text-danger" href="<?= $link->url('auth.logout') ?>">Log out</a>
                         </li>
                     </ul>
