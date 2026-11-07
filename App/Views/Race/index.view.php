@@ -25,11 +25,11 @@
             <tbody>
                 <?php foreach ($races as $race): ?>
                     <tr>
-                        <td><?= $race->getName() ?></td>
-                        <td><?= date('d.m.Y H:i',strtotime($race->getRaceDate())) ?></td>
-                        <td><?= $race->getLocation() ?></td>
-                        <td><?= $race->getCircuitName() ?></td>
-                        <td><?= $race->getLaps() ?></td>
+                        <td><?= e($race->getName()) ?></td>
+                        <td><?= date('d.m.Y H:i',strtotime(e($race->getRaceDate()))) ?></td>
+                        <td><?= e($race->getLocation()) ?></td>
+                        <td><?= e($race->getCircuitName()) ?></td>
+                        <td><?= e($race->getLaps()) ?></td>
                         <td>
                             <a class="btn btn-sm btn-primary"
                                href="<?= e($link->url('race.edit', ['id' => $race->getId()])) ?>">Upraviť</a>
