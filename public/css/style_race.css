@@ -1,0 +1,19 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    margin: 20px 0;
+}
+
+table th {
+    background-color: var(--surface);
+    color: var(--text);
+    padding: 10px;
+    text-align: left;
+}
+
+table td {
+    border: 1px solid var(--muted);
+    padding: 10px;
+    color: var(--text);
+}

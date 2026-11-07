@@ -5,12 +5,6 @@
 ?>
 
 <div class="container-fluid">
-    <div class="row">
-        <div class="col">
-            <div>
-                Welcome, <strong><?= e($user->getName()) ?></strong>!<br><br>
-                This part of the application is accessible only after logging in.
-            </div>
-        </div>
-    </div>
+    <h1>Správa pretekov</h1>
+    <a class="btn btn-primary" href="<?= $link->url('race.index') ?>">Tabuľka pretekov</a>
 </div>
