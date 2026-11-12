@@ -132,11 +132,6 @@ class Prediction extends Model
         return $predictions[0] ?? null;
     }
 
-    /** @return Prediction[] */
-    public function getPredictions(): array
-    {
-        return $this->getAllRelated(Driver::class, 'raceId');
-    }
     public function hasValidDrivers(): bool
     {
         $drivers = [$this->predictedP1DriverId, $this->predictedP2DriverId, $this->predictedP3DriverId];
