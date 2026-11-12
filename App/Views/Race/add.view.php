@@ -4,12 +4,12 @@
 /** @var \Framework\Support\LinkGenerator $link */
 ?>
 
-<div class="container py-5">
+<div class="py-5">
     <div class="row justify-content-center">
         <div class="col-12 col-lg-8">
             <div class="card f1-karta">
                 <div class="card-body position-relative z-1">
-                    <h1 class="1-font text-uppercase">Pridať pretek</h1>
+                    <h1 class="f1-font text-uppercase">Pridať pretek</h1>
 
                     <form method="post" action="<?= e($link->url('race.save')) ?>">
                         <div class="row g-3">

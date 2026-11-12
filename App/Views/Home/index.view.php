@@ -3,8 +3,6 @@
 /** @var \Framework\Support\LinkGenerator $link */
 ?>
 
-
-<link rel="stylesheet" href="<?= $link->asset('css/app.css') ?>">
 <div class="card f1-karta my-5 uvodna-karta">
     <div class="card-body position-relative z-1 p-4 p-md-5">
         <div class="row">

@@ -141,10 +141,12 @@ class Race extends Model
     {
         return $this->raceDate < date('Y-m-d H:i:s');
     }
+
     public function hasResult(): bool
     {
         return $this->resultP1DriverId !== null && $this->resultP2DriverId !== null && $this->resultP3DriverId !== null;
     }
+
     public function getResultDriverP1(): ?Driver
     {
         return $this->getOneRelated(Driver::class, 'resultP1DriverId');
@@ -160,4 +162,9 @@ class Race extends Model
         return $this->getOneRelated(Driver::class, 'resultP3DriverId');
     }
 
+    /** @return Prediction[] */
+    public function getPredictions(): array
+    {
+        return $this->getAllRelated(Prediction::class, 'raceId');
+    }
 }

@@ -7,12 +7,12 @@ $raceDate = $race->getRaceDate();
 $raceDateValue = $raceDate !== null ? date('Y-m-d\TH:i', strtotime($raceDate)) : '';
 ?>
 
-<div class="container py-5">
+<div class="py-5">
     <div class="row justify-content-center">
         <div class="col-12 col-lg-8">
             <div class="card f1-karta">
                 <div class="card-body position-relative z-1">
-                    <h1 class="1-font text-uppercase">Upraviť pretek</h1>
+                    <h1 class="f1-font text-uppercase">Upraviť pretek</h1>
 
                     <form method="post" action="<?= e($link->url('race.save')) ?>">
                         <input type="hidden" name="id" value="<?= e($race->getId()) ?>">

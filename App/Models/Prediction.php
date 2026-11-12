@@ -15,7 +15,7 @@ class Prediction extends Model
     protected ?int $pointsEarned = 0;
     protected ?string $createdAt = null;
 
-    protected static ?array $fillable = ['predictedP1DriverId', 'predictedP2DriverId', 'predictedP3DriverId'];
+    protected static ?array $fillable = ['predictedP1DriverId', 'predictedP2DriverId', 'predictedP3DriverId', 'raceId'];
 
     public function getId(): ?int
     {
@@ -132,6 +132,11 @@ class Prediction extends Model
         return $predictions[0] ?? null;
     }
 
+    /** @return Prediction[] */
+    public function getPredictions(): array
+    {
+        return $this->getAllRelated(Driver::class, 'raceId');
+    }
     public function hasValidDrivers(): bool
     {
         $drivers = [$this->predictedP1DriverId, $this->predictedP2DriverId, $this->predictedP3DriverId];
