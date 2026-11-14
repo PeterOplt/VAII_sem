@@ -13,19 +13,48 @@ class FantasyController extends BaseController
 {
     public function index(Request $request): Response
     {
+        $session = $this->app->getSession();
+        $error = $session->get('predictionError');
+        $session->remove('predictionError');
+        $editId = (int)$request->value('edit');
+        $editing = $editId > 0 ? $this->findOwnPrediction($editId) : new Prediction();
+        return $this->html($this->viewData() + ['error' => $error , 'editing' => $editing]);
+    }
+
+    private function viewData(): array
+    {
         $races = Race::getAll('raceDate > ?', [date('Y-m-d H:i:s')], 'raceDate ASC');
         $drivers = Driver::getAll(null,[], 'lastName ASC');
         $predictions = Prediction::getAll('userId = ?', [$this->getCurrentUserId()], 'createdAt DESC');
-//        if ($this->user->isLoggedIn()) {
-//            $predictions = Prediction::getAll('userId = ?', [$this->user->getId()], 'createdAt DESC');
-//        }
-        return $this->html([
+
+        return [
             'races' => $races,
             'drivers' => $drivers,
             'predictions' => $predictions
-        ]);
+        ];
     }
 
+    public function delete(Request $request): Response {
+        if (!$request->isPost()) {
+            throw new HttpException(405, 'Method not allowed');
+        }
+        $prediction = $this->findOwnPrediction((int)$request->value('id'));
+
+        if ($prediction->getRace()?->raceEnded()) {
+            throw new HttpException(400, 'Predikcia sa nedá zmazať, pretože preteky už prebehli.');
+        }
+
+        $prediction->delete();
+        return $this->redirect($this->url('fantasy.index'));
+    }
+
+    public function edit(Request $request): Response
+    {
+        $predictionId = (int)$request->value('edit');
+        $prediction = $predictionId > 0 ? $this->findOwnPrediction($predictionId) : new Prediction();
+        $prediction->setCreatedAt(date('Y-m-d H:i:s'));
+        return $this->html($this->viewData() + ['prediction' => $prediction]);
+    }
     public function save(Request $request): Response
     {
         if(!$request->isPost()) {
@@ -34,7 +63,30 @@ class FantasyController extends BaseController
         $prediction = (int)$request->value('id') > 0 ? $this->findOwnPrediction($request->value('id')) : new Prediction();
         $prediction->setFromRequest($request);
         $prediction->setUserId($this->getCurrentUserId());
+
+
+        $error = null;
+        $race = Race::getOne($prediction->getRaceId());
+        if ($race === null) {
+            $error = 'Predikcia sa nedá uložiť, pretože preteky neexistuju.';
+        } else if($race->raceEnded()) {
+            $error = 'Predikcia sa nedá uložiť, pretože preteky už prebehli.';
+        } else if (!$prediction->hasValidDrivers()) {
+            $error = 'Vyber troch rôznych jazdcov';
+        } else {
+            $existing = Prediction::findForUserAndRace($this->getCurrentUserId(), $prediction->getRaceId());
+            if ($existing !== null && $existing->getId() !== $prediction->getId()) {
+                $error = 'Predikcia pre tieto preteky už existuje.';
+            }
+        }
+
+        if ($error !== null) {
+            $this->app->getSession()->set('predictionError', $error);
+            return $this->redirect($this->url('fantasy.index'));
+        }
+
         $prediction->save();
+
         return $this->redirect($this->url('fantasy.index'));
     }
 
@@ -51,6 +103,6 @@ class FantasyController extends BaseController
 
     private function getCurrentUserId(): int
     {
-        return 2; // Replace with actual user ID retrieval logic
+        return 4; // Replace with actual user ID retrieval logic
     }
 }
